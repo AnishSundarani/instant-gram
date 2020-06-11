@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Instantgram
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: anish
+Implementation-Vendor-Id: anish.Instantgram
+Build-Jdk: 1.8.0_202-ea
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Instantgram
+Created-By: Maven Integration for Eclipse
+

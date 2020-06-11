@@ -1,0 +1,15 @@
+#overlay {
+    background: #fcfcfc;
+    color: #666666;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    float: left;
+    position: absolute;
+    padding-top: 25%;
+    opacity: .80;
+    z-index: 1019;
+
+  }

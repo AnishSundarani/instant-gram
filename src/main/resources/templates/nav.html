@@ -1,0 +1,133 @@
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	
+	
+<style>
+.icon {
+	padding: 10px;
+}
+
+.navbar {
+	background-image: linear-gradient(to right, rgb(90, 0, 90),
+		rgb(252, 67, 190));
+	color: white;
+	font-size: large;
+}
+
+a {
+	color: black;
+}
+
+.a2 {
+	color: white;
+}
+
+.navbar-brand {
+	font-family: Brush Script MT;
+	font-size: xx-large;
+}
+
+#rstick {
+	justify-content: flex-end;
+}
+
+.p-1 {
+	height: 40px;
+	background-color: rgba(0, 0, 0, 0.3) !important;
+	border-radius: 15px !important;
+	padding: 10px;
+}
+
+.a2:hover {
+	color: white;
+	outline: none;
+}
+
+input {
+    background-color: transparent !important;
+    color: white !important;
+}
+
+::placeholder {
+	color: #ccc !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: white !important;
+}
+
+.btn:active {
+	outline: none !important;
+}
+
+.ui-autocomplete {
+	margin-top: 10px;
+	position: absolute;
+	cursor: default;
+	font-size: large;
+	padding: 5px;
+	padding-top: 15px;
+}
+
+.ui-autocomplete li {
+	padding: 10px;
+}
+      
+.ui-autocomplete-loading { background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat; }
+
+</style>
+
+<div style="height: 60px">
+	<nav class="navbar fixed-top navbar-expand-lg" style="height: 60px;">
+		<div class="container">
+			<div class="row" style="width: 100%">
+				<div class="col-3">
+					<a class="a2 navbar-brand" href="/home"> <i
+						class="fab fa-instagram icon"></i> Instantgram
+					</a>
+				</div>
+				<div class="col-9" style="align-self: center;">
+					<div class="row"
+						style="justify-content: flex-end; align-items: center;">
+
+						<div id="rstick">
+							<div class="navsearch">
+								<div class="p-1 rounded rounded-pill shadow-sm">
+									<div class="input-group" style="align-items: self-start;">
+										<input id="userSearch" type="text"
+											placeholder="Search"
+											aria-describedby="button-addon1"
+											class="form-control border-0 srch">
+										<div class="input-group-append">
+											<button id="button-addon1" type="submit"
+												class="btn btn-link text-primary">
+												<i class="fa fa-search"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="btn-group">
+							<a href="#" class="a2 btn dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-user icon"></i> <span th:text=" ${fullName}">User</span>
+							</a>
+
+							<ul class="dropdown-menu" role="menu">
+								<li><a class="dropdown-item" th:href="'/profile/'+${username}">My Profile</a></li>
+								<li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+</div>
+</html>
+
+<script src="/js/nav.js"></script>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<title>Instant-gram | Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="/css/registration.css">
+
+</head>
+
+<body>
+
+
+
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+
+
+
+			<div class="fadeIn first">
+				<div id="login_logo">
+					Instantgram
+					<hr>
+				</div>
+				<div class="d-flex flex-column text-center fr-content">
+					<div th:if="${param.success}">
+						<div class="alert alert-info">Successfully registered on
+							Instantgram</div>
+					</div>
+					<form th:action="@{/registration}" th:object="${user}"
+						method="post">
+						<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+							th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+							error</p>
+						<div class="form-group input-container"
+							th:classappend="${#fields.hasErrors('fullName')}? 'has-error':''">
+							<i class="fa fa-address-card icon" id='name'></i> <input
+								class="form-control input-field fadeIn second" type="text"
+								id="fullName" placeholder="Full Name" name="fullName"
+								th:field="*{fullName}" autofocus>
+						</div>
+						<p class="error-message"
+							th:each="error: ${#fields.errors('fullName')}" th:text="${error}">Validation
+							error</p>
+						<div class="form-group input-container"
+							th:classappend="${#fields.hasErrors('username')}? 'has-error':''">
+							<i class="fa fa-address-card icon" id='name'></i> <input
+								class="form-control input-field fadeIn second" type="text"
+								id="name" placeholder="Username" name="username"
+								th:field="*{username}" autofocus>
+						</div>
+						<p class="error-message"
+							th:each="error: ${#fields.errors('username')}" th:text="${error}">Validation
+							error</p>
+						<div class="form-group input-container">
+							<i class="fa fa-user icon" id='email'></i> <input
+								class="form-control input-field fadeIn second" type="text"
+								id="email" placeholder="Email" name="email" th:field="*{email}">
+						</div>
+						<p class="error-message"
+							th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation
+							error</p>
+						<div class="input-container">
+							<i class="fa fa-key icon" id="pass"></i> <input
+								class="form-control input-field fadeIn third" type="password"
+								placeholder="Password" id="psw" name="psw"
+								th:field="*{password}">
+						</div>
+						<p class="error-message"
+							th:each="error : ${#fields.errors('password')}"
+							th:text="${error}">Validation error</p>
+						<div class="input-container">
+							<i class="fa fa-key icon" id="rpass"></i> <input
+								class="form-control input-field fadeIn third" type="password"
+								placeholder="Retype Password" id="rpsw" name="rpsw"
+								th:field="*{confirmPassword}">
+						</div>
+						<p class="error-message"
+							th:each="error : ${#fields.errors('confirmPassword')}"
+							th:text="${error}">Validation error</p>
+						<br>
+						<button type="submit" id="submit"
+							class="btn btn-info btn-block btn-round fadeIn fourth">Signup</button>
+					</form>
+				</div>
+				<div id="formFooter">
+					<div class="modal-footer d-flex justify-content-center">
+						<div class="signup-section">
+							Already a member? <a href="/login" class="text-info"> Login</a>.
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Login Form -->
+			<!--  <form>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form> -->
+
+			<!-- Remind Passowrd -->
+			<!--  <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+ -->
+		</div>
+	</div>
+</body>
+
+</html>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	$(document).ready(
+			function() {
+				$("#username").css("box-shadow",
+						" 0 0 0 0.2rem rgba(0,123,255,.25)");
+				$("#uname").css("box-shadow",
+						" 0 0 0 0.2rem rgba(0,123,255,.25)");
+				$("#username").focus(
+						function() {
+							$("#uname").css("box-shadow",
+									" 0 0 0 0.2rem rgba(0,123,255,.25)");
+							$("#pass").css("box-shadow", "0 0 0px white");
+						});
+				$("#username").focus(
+						function() {
+							$("#pass").css("box-shadow", "0 0 0px white");
+							$("#uname").css("box-shadow",
+									" 0 0 0 0.2rem rgba(0,123,255,.25)");
+							$("#username").css("box-shadow",
+									" 0 0 0 0.2rem rgba(0,123,255,.25)");
+							$("#pass").css("box-shadow", "0 0 0px white");
+						});
+				$("#psw").focus(
+						function() {
+							$("#username").css("box-shadow", "0 0 0px white");
+							$("#pass").css("box-shadow",
+									" 0 0 0 0.2rem rgba(0,123,255,.25)");
+							$("#uname").css("box-shadow", "0 0 0px white");
+						});
+				$("#psw").blur(function() {
+					$("#pass").css("box-shadow", "0 0 0px white");
+					$("#uname").css("box-shadow", "0 0 0px white");
+				});
+				$("#username").blur(function() {
+					$("#pass").css("box-shadow", "0 0 0px white");
+					$("#username").css("box-shadow", "0 0 0px white");
+					$("#uname").css("box-shadow", "0 0 0px white");
+				});
+
+				$("#submit").click(function() {
+
+					req = {
+						"username" : $("#username").val(),
+						"password" : $("#psw").val()
+					}
+
+					$.ajax({
+						url : '/api/account/login',
+						data : req,
+						type : 'POST',
+						success : function(data) {
+							console.log(data)
+						},
+						error : function(jqXHR, exception) {
+							var msg = '';
+							if (jqXHR.status === 0) {
+								msg = 'Not connect.\n Verify Network.';
+							} else if (jqXHR.status == 404) {
+								msg = 'Requested page not found. [404]';
+							} else if (jqXHR.status == 500) {
+								msg = 'Internal Server Error [500].';
+							} else if (exception === 'parsererror') {
+								msg = 'Requested JSON parse failed.';
+							} else if (exception === 'timeout') {
+								msg = 'Time out error.';
+							} else if (exception === 'abort') {
+								msg = 'Ajax request aborted.';
+							} else {
+								msg = 'Uncaught Error.\n' + jqXHR.responseText;
+							}
+							console.log(msg);
+						}
+					});
+
+				});
+
+			});
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>

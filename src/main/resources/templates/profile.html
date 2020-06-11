@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>InstantGram | Profile</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="/css/loader.css">
+</head>
+
+<body>
+	<div id="nav"></div>
+
+	<div id="loader_div" height="100%"></div>
+
+	<div class="container" id="main">
+		<br>
+		<div class="row">
+			<div class="col-5">
+				<div style="align-content: center; text-align-last: center;">
+					<img id="dp" class="pp" src="anish.jpeg"
+						onerror="this.src='/default.png';"> <br>
+					<h2 style="font-style: italic;">
+						@<span value="uname" th:text="${username}">User</span>
+					</h2>
+					<h4>
+						<p th:text="${fullName}" />
+					</h4>
+				</div>
+			</div>
+			<div class="col-7">
+				<div class="row"
+					style="margin-top: 10px; height: 150px; align-self: center;">
+					<div class="col-3 btn" style="margin-top: 30px;">
+						<h1 id="postCount">0</h1>
+						Posts
+					</div>
+					<div class="col-3 btn" data-toggle="modal"
+						data-target="#followerModal" style="margin-top: 30px;">
+						<h1 id="followerCount">0</h1>
+						Followers
+					</div>
+					<div class="col-3 btn" data-toggle="modal"
+						data-target="#followingModal" style="margin-top: 30px;">
+						<h1 id="followingCount">0</h1>
+						Following
+					</div>
+
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-9 username" style="text-align-last: center;">
+
+						<div class="custom-file" th:if="${isSelf == 'true'}">
+							<div class="file btn btn-lg btn-primary"
+								style="padding-top: 5px;">
+								<i class="fas fa-upload"> </i> Upload New Image
+								<form id="upload" th:action="@{/upload}"
+									enctype="multipart/form-data" method="post">
+									<input id="singleFileUploadInput" type="file" name="file"
+										class="file-input" required onchange="$('#imgbtn').click();" />
+									<button type="submit" id="imgbtn"></button>
+								</form>
+							</div>
+						</div>
+						<button id="followBtn" th:if="${isSelf != 'true'}" type="button"
+							class="btn btn-primary" onclick="follow();">
+							<i class="fas fa-plus"></i> Follow
+
+						</button>
+						<button id="unfollowBtn" th:if="${isSelf != 'true'}" type="button"
+							class="btn btn-primary" onclick="unfollow();">Unfollow</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<!-- Modal -->
+		<div class="modal fade" id="postModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<div class="row">
+							<div class="col-4">
+								<img id="sdp" class="pp" src="/default.png">
+							</div>
+							<div class="col-8">
+								<h3 style="font-style: italic; margin: 0px; align-self: center">
+									<span style="vertical-align: middle;" th:text="${username}">User</span>
+								</h3>
+							</div>
+						</div>
+						<div>
+							<button class="btn" style="background: transparent;">
+								<i class="fas fa-ellipsis-h"></i>
+							</button>
+						</div>
+					</div>
+
+					<div class="modal-body" style="padding: 0px;">
+						<img id="modal_image" style="border-radius: 0%">
+					</div>
+
+					<div class="modal-footer">
+						<button th:if="${isSelf == 'true'}" type="button"
+							class="btn btn-danger" onclick="deletePost()">
+							<i class="fas fa-trash"></i>
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="followerModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h2>
+							<i class="fas fa-user-plus"></i> Followers
+						</h2>
+					</div>
+
+					<div class="modal-body" style="padding: 0px;">
+						<div id="followerList" class="list-group"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="followingModal" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h2>
+							<i class="fas fa-user-plus"></i> Following
+						</h2>
+					</div>
+
+					<div class="modal-body" style="padding: 0px;">
+						<div id="followingList" class="list-group"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="posts" class="row imgs"></div>
+	</div>
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+
+		var username = /*[[${username}]]*/'User Name';
+		var currentUser = /*[[${currentUser}]]*/'User Name';
+
+		/*]]>*/
+	</script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+	<script src="/js/loader.js"></script>
+	
+	 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
+    
+	<script src="/js/profile.js"></script>
+
+</body>
+
+</html>

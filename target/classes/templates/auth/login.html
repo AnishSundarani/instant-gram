@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Instantgram | Login</title>
+
+<link href='https://fonts.googleapis.com/css?family=Roboto'
+	rel='stylesheet' type='text/css' />
+<link href='https://fonts.googleapis.com/css?family=Exo'
+	rel='stylesheet' type='text/css' />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/login.css" th:href="@{/css/login.css}" />
+
+</head>
+
+<body>
+
+
+
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+
+
+
+			<div class="fadeIn first">
+				<div id="login_logo">
+					Instantgram
+					<hr>
+				</div>
+				<div class="d-flex flex-column text-center fr-content">
+					<form th:action="@{/login}" method="post">
+						<div th:if="${param.error}">
+							<div class="alert alert-danger">Invalid username or
+								password.</div>
+						</div>
+						<div th:if="${param.logout}">
+							<div class="alert alert-info">You have been logged out.</div>
+						</div>
+						<div class="form-group input-container">
+							<i class="fa fa-user icon" id='uname'></i> <input
+								class="form-control input-field fadeIn second" type="text"
+								id="username" placeholder="Username" name="username" autofocus>
+						</div>
+						<div class="form-group input-container">
+							<i class="fa fa-key icon" id="pass"></i> <input
+								class="form-control input-field fadeIn third" type="password"
+								placeholder="Password" id="psw" name="password">
+
+						</div>
+						<p class="font-small blue-text d-flex justify-content-end">
+							<a href="#" class="blue-text ml-1">Forgot Password?</a>
+						</p>
+						<br>
+						<button type="submit" id="submit"
+							class="btn btn-info btn-block btn-round fadeIn fourth">Login</button>
+					</form>
+				</div>
+				<div id="formFooter">
+					<div class="modal-footer d-flex justify-content-center">
+						<div class="signup-section">
+							Not a member yet? <a href="/registration" class="text-info">
+								Sign Up</a>.
+
+							<div>
+							<hr>
+								<a href="#" class="text-info" data-toggle="modal"
+									data-target="#demoModal"> Click here </a> to watch the demo
+								Video
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Login Form -->
+			<!--  <form>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form> -->
+
+			<!-- Remind Passowrd -->
+			<!--  <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+ -->
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="demoModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-body" style="padding: 0px; align-self: center;">
+					<iframe width="833" height="451"
+						src="https://www.youtube.com/embed/2EUdhdgAl80" frameborder="0"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen></iframe>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	$(document).ready(
+			function() {
+				$("#username").css("box-shadow",
+						" 0 0 0 0.2rem rgba(0,123,255,.25)");
+				$("#uname").css("box-shadow",
+						" 0 0 0 0.2rem rgba(0,123,255,.25)");
+				$("#username").focus(
+						function() {
+							$("#uname").css("box-shadow",
+									" 0 0 0 0.2rem rgba(0,123,255,.25)");
+							$("#pass").css("box-shadow", "0 0 0px white");
+						});
+				$("#username").focus(
+						function() {
+							$("#pass").css("box-shadow", "0 0 0px white");
+							$("#uname").css("box-shadow",
+									" 0 0 0 0.2rem rgba(0,123,255,.25)");
+							$("#username").css("box-shadow",
+									" 0 0 0 0.2rem rgba(0,123,255,.25)");
+							$("#pass").css("box-shadow", "0 0 0px white");
+						});
+				$("#psw").focus(
+						function() {
+							$("#username").css("box-shadow", "0 0 0px white");
+							$("#pass").css("box-shadow",
+									" 0 0 0 0.2rem rgba(0,123,255,.25)");
+							$("#uname").css("box-shadow", "0 0 0px white");
+						});
+				$("#psw").blur(function() {
+					$("#pass").css("box-shadow", "0 0 0px white");
+					$("#uname").css("box-shadow", "0 0 0px white");
+				});
+				$("#username").blur(function() {
+					$("#pass").css("box-shadow", "0 0 0px white");
+					$("#username").css("box-shadow", "0 0 0px white");
+					$("#uname").css("box-shadow", "0 0 0px white");
+				});
+
+				$("#submit").click(function() {
+
+					req = {
+						"username" : $("#username").val(),
+						"password" : $("#psw").val()
+					}
+
+					$.ajax({
+						url : '/api/login',
+						data : req,
+						type : 'POST',
+						success : function(data) {
+							console.log(data)
+						},
+						error : function(jqXHR, exception) {
+							var msg = '';
+							if (jqXHR.status === 0) {
+								msg = 'Not connect.\n Verify Network.';
+							} else if (jqXHR.status == 404) {
+								msg = 'Requested page not found. [404]';
+							} else if (jqXHR.status == 500) {
+								msg = 'Internal Server Error [500].';
+							} else if (exception === 'parsererror') {
+								msg = 'Requested JSON parse failed.';
+							} else if (exception === 'timeout') {
+								msg = 'Time out error.';
+							} else if (exception === 'abort') {
+								msg = 'Ajax request aborted.';
+							} else {
+								msg = 'Uncaught Error.\n' + jqXHR.responseText;
+							}
+							console.log(msg);
+						}
+					});
+
+				});
+
+			});
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>

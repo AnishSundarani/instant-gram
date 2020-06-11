@@ -1,0 +1,22 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.Instantgram.config.StorageProperties",
+      "name": "storage",
+      "type": "com.Instantgram.config.StorageProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "amazonProperties.endpointUrl",
+      "description": "A description for 'amazonProperties.endpointUrl'",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.Instantgram.config.StorageProperties",
+      "name": "storage.location",
+      "type": "java.lang.String"
+    }
+  ]
+}

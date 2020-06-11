@@ -1,0 +1,232 @@
+  html {
+      height: 100%;
+    }
+    
+    body {
+      height: 100%;
+      background-image: linear-gradient(rgb(80, 0, 80), rgb(255, 61, 190));    }
+
+    #submit {
+      background-color: rgb(196, 0, 170);
+    }
+
+    #login_logo {
+      padding-top: 20px;
+      font-family: Brush Script MT;
+      font-size: xxx-large;
+      font-style: bold;
+    }
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      min-height: 100%;
+    }
+
+    #formContent {
+      -webkit-border-radius: 10px 10px 10px 10px;
+      border-radius: 10px 10px 10px 10px;
+      background: #fff;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      padding: 0px;
+      -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+      box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+      text-align: center;
+
+    }
+
+
+    #formFooter {
+      -webkit-border-radius: 10px 10px 10px 10px;
+      border-radius: 10px 10px 10px 10px;
+      background-color: #f6f6f6;
+
+
+      text-align: center;
+
+    }
+
+
+    /* ANIMATIONS 
+
+/* Simple CSS3 Fade-in-down Animation */
+    .fadeInDown {
+      -webkit-animation-name: fadeInDown;
+      animation-name: fadeInDown;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+
+    @-webkit-keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+      }
+    }
+
+    /* Simple CSS3 Fade-in Animation */
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @-moz-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .fadeIn {
+      opacity: 0;
+      -webkit-animation: fadeIn ease-in 1;
+      -moz-animation: fadeIn ease-in 1;
+      animation: fadeIn ease-in 1;
+
+      -webkit-animation-fill-mode: forwards;
+      -moz-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+
+      -webkit-animation-duration: 1s;
+      -moz-animation-duration: 1s;
+      animation-duration: 1s;
+    }
+
+    .fadeIn.first {
+      -webkit-animation-delay: 0.4s;
+      -moz-animation-delay: 0.4s;
+      animation-delay: 0.4s;
+    }
+
+    .fadeIn.second {
+      -webkit-animation-delay: 0.6s;
+      -moz-animation-delay: 0.6s;
+      animation-delay: 0.6s;
+    }
+
+    .fadeIn.third {
+      -webkit-animation-delay: 0.8s;
+      -moz-animation-delay: 0.8s;
+      animation-delay: 0.8s;
+    }
+
+    .fadeIn.fourth {
+      -webkit-animation-delay: 1s;
+      -moz-animation-delay: 1s;
+      animation-delay: 1s;
+    }
+
+    /* Simple CSS3 Fade-in Animation */
+
+    .input-container {
+      display: -ms-flexbox;
+      /* IE10 */
+      display: flex;
+      width: 100%;
+      margin-bottom: 15px;
+
+      height: 50px;
+      padding: 4px;
+      font-size: 20px;
+      margin: 5px 0;
+    }
+
+    .icon {
+      padding-top: 10px;
+      border-radius: 15px 0px 0px 15px;
+      border: 1px solid rgba(218, 82, 236, 0.8);
+      background-color: rgb(194, 4, 194);
+      border-right: 0;
+      color: white;
+      min-width: 50px;
+      text-align: center;
+      color: white;
+
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0px white;
+
+
+    }
+
+    .input-field {
+      width: 100%;
+      border-radius: 0px 15px 15px 0px;
+
+      border: 1px solid lightgray;
+
+      border-left: 0;
+      outline: none;
+
+    }
+
+    .form-title {
+      margin: -2rem 0rem 2rem;
+    }
+
+
+
+    .fr-content {
+      margin: 25px;
+    }
+    
+    .error-message {
+    	color: red;
+    }
+
+    @media only screen and (max-width: 400px) {
+      .fr-content {
+        margin: 0px;
+      }
+
+      .wrapper {
+        padding-top: 100px;
+      }
+    }
